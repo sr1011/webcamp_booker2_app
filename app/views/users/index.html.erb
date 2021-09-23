@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-4">
+    <div class="sidebar_fixed">
+     <h3>User info</h3>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <table class="table">
+  <tr>
+  <th><p>name</th>
+  <th><%= @user.name %></p></th>
+  </tr>
+  <tr>
+    <th>introdaction</th>
+    <th><p><% @user.introduction %></p></th>
+  </tr>
+  </div>
+  </table>
+   <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+  </div>
+    
+    <h3>New book</h3>
+<%= form_with model: @booker, local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :book_name %>
+  <h4>Opinion</h4>
+  <%= f.text_area :caption %>
+  <div><%= f.submit 'Create Book', class:"btn btn-success" %></div>
+  <% end %>
+</div>
+
+<div class="col">
+  <table class="table user-index">
+        <h2>Users</h2>
+        <thead>
+          <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <th>
+        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      </th>
+      <th><p><%= user.name %></p></th>
+      <th></th>
+      <th></th>
+      <th><p><%= link_to"Show",user_path(user.id) %></th></p></th>
+    </tr>
+    <% end %>
+  </table>
+</div>

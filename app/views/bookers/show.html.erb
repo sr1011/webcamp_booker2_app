@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-5">
+    <div class="sidebar_fixed">
+    <h3>User info</h3>
+
+    <h3>New book</h3>
+<%= form_with model: @booker, local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :book_name %>
+  <h4>Opinion</h4>
+  <%= f.text_area :caption %>
+  <div><%= f.submit 'Create Book', class:"btn btn-success" %></div>
+  <% end %>
+  </div>
+  </div>
+
+<div class="col">
+  <h2>Book detail</h2>
+  <table class="table user-index">
+    <tr>
+  <td>
+   <%= image_tag('no_image.jpg') %>
+   <p><%= @booker.user.name %></p>
+   </td>
+  <td><%= @booker.book_name %></td>
+  <td><%= @booker.caption %></td>
+  <td><% if @booker.user == current_user %></td>
+  <td><%= link_to "Edit", edit_booker_path(@booker), class:"btn btn-success"%></td>
+  <td><%= link_to "Delete", booker_path(@booker), class:"btn btn-danger", method: :delete, data: {confirm: "削除しますか？"}%></td>
+  </td>
+  </tr>
+  <% end %>
+  </table>
+  </div>
