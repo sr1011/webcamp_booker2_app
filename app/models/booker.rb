@@ -1,6 +1,6 @@
 class Booker < ApplicationRecord
   belongs_to :user
-  
-  validates :book_name, presence: true
-  validates :caption, presence: true, length: { maximum: 200}
+
+  validates :book_name, presence: true, length: { minimum: 1}
+  validates :caption, presence: true, length: { minimum: 1, maximum: 200}
 end
