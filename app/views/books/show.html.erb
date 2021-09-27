@@ -1,0 +1,24 @@
+<%= render 'books/list', user: @user, new_book: @new_book %>
+    
+  <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+          <tbody>
+               <tr>
+                <td>
+                 <p><%= link_to image_tag('no_image.jpg'), user_path(@user.id) %></p>
+                 <p><%= link_to @user.name, user_path(@user.id) %></p>
+                </td>
+                <th><p><%= link_to @book.title, book_path(@book.id) %></p></th>
+                <td><%= @book.body %></td>
+                <td><% if @book.user == current_user %></td>
+                <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success"%></td>
+                <td><%= link_to "Destroy", book_path(@book), class:"btn btn-danger", method: :delete, data: {confirm: "削除しますか？"}%></td>
+                </td>
+                </tr>
+          </tbody>
+      </table>
+  <% end %>
+  </div>
+  </div>
+  </div>
